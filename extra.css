@@ -1,0 +1,74 @@
+/* Paleta ENA 2024 extraída de la portada institucional proporcionada. */
+:root {
+  --ena-azul: #3e5e9d;
+  --ena-azul-profundo: #233252;
+  --ena-verde: #85b64a;
+  --ena-verde-profundo: #609536;
+  --ena-violeta: #6b3a91;
+  --ena-magenta: #b0489c;
+  --ena-celeste: #78add2;
+  --ena-crema: #fcfcfa;
+  --ena-gris-claro: #eef1ea;
+}
+
+body {
+  background: linear-gradient(135deg, #fcfcfa 0%, #fcfcfa 72%, #f2f6ed 100%);
+}
+
+.navbar {
+  border-bottom: 4px solid var(--ena-verde);
+  box-shadow: 0 2px 12px rgb(35 50 82 / 8%);
+}
+
+.navbar-brand {
+  color: var(--ena-azul-profundo) !important;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  color: var(--ena-violeta) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -.015em;
+}
+
+h1 {
+  border-bottom: 3px solid var(--ena-verde);
+  padding-bottom: .35rem;
+}
+
+a:hover {
+  color: var(--ena-violeta);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--ena-azul);
+  --bs-btn-border-color: var(--ena-azul);
+  --bs-btn-hover-bg: var(--ena-violeta);
+  --bs-btn-hover-border-color: var(--ena-violeta);
+}
+
+.pkgdown-release {
+  background: var(--ena-verde) !important;
+  color: #fff !important;
+}
+
+pre, code {
+  border-color: #dbe6d0;
+}
+
+pre {
+  border-left: 4px solid var(--ena-celeste);
+}
+
+.table > :not(caption) > * > * {
+  border-bottom-color: #dbe6d0;
+}
+
+.table thead th {
+  color: var(--ena-azul-profundo);
+  background: #edf4e5;
+}

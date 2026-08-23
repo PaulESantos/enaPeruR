@@ -1,0 +1,93 @@
+# enaPeruR
+
+Herramientas reproducibles para los microdatos de la Encuesta Nacional
+Agropecuaria (ENA) del Perú, 2014–2025.
+
+## Alcance
+
+`enaPeruR` organiza el acceso, lectura, validación, apilado y tabulación
+descriptiva de microdatos ENA. Permite preparar una base de varios años,
+pero no convierte una serie histórica en comparable automáticamente.
+
+| Función | Lo que hace | Lo que no hace |
+|----|----|----|
+| [`ena_catalogo()`](https://paulesantos.github.io/enaPeruR/reference/ena_catalogo.md) y [`ena_marco()`](https://paulesantos.github.io/enaPeruR/reference/ena_marco.md) | Informan la cobertura y el marco de cada año. | No verifican que los indicadores sean comparables. |
+| [`ena_descargar()`](https://paulesantos.github.io/enaPeruR/reference/ena_descargar.md), [`ena_importar()`](https://paulesantos.github.io/enaPeruR/reference/ena_importar.md) y [`ena_leer()`](https://paulesantos.github.io/enaPeruR/reference/ena_leer.md) | Descargan y leen archivos autorizados. | No localizan URLs ni homologan módulos. |
+| [`ena_combinar()`](https://paulesantos.github.io/enaPeruR/reference/ena_combinar.md) | Apila bases con estructuras distintas y conserva el origen. | No armoniza nombres, códigos, cuestionarios ni ponderadores. |
+| [`ena_validar()`](https://paulesantos.github.io/enaPeruR/reference/ena_validar.md) | Revisa estructura y pesos. | No sustituye la revisión metodológica. |
+| [`ena_estimar_media()`](https://paulesantos.github.io/enaPeruR/reference/ena_estimar_media.md) y [`ena_estimar_proporcion()`](https://paulesantos.github.io/enaPeruR/reference/ena_estimar_proporcion.md) | Producen estimaciones ponderadas descriptivas. | No calculan errores estándar, CV ni intervalos de confianza. |
+
+La ENA 2014–2022 usa el marco derivado del IV CENAGRO 2012. Desde 2023
+utiliza el Marco Maestro Muestral de MIDAGRI, con componentes de áreas y
+lista. Los años 2020 y 2021 no figuran como disponibles en el catálogo
+del paquete. Las comparaciones 2023–2025 con años anteriores requieren
+revisar población objetivo, módulos, periodos de referencia,
+codificación y factor de expansión.
+
+## Flujo para una serie histórica
+
+``` r
+library(enaPeruR)
+
+# 1. Verificar cobertura y marco antes de elegir años comparables.
+ena_catalogo(2014:2025)
+ena_marco(2023)
+
+# 2. Descargar las URLs oficiales de un mismo módulo para cada año.
+# 3. Leer cada archivo, conservar el año y armonizar fuera de enaPeruR.
+modulos <- ena_leer("datos/ena", combinar = FALSE)
+modulos <- lapply(modulos, (x) transform(x, anio_analisis = x$ANIO))
+serie <- ena_combinar(modulos, id_origen = "archivo_origen")
+
+# 4. Tras documentar la armonización, validar y tabular.
+ena_validar(serie, pesos = "factor_armonizado")
+ena_estimar_media(serie, "indicador_armonizado", "factor_armonizado", por = "anio_analisis")
+
+# Ejemplo incluido: subconjunto didáctico ENA 2024 de Cusco.
+data(ena_cusco_2024)
+ena_estimar_media(ena_cusco_2024, "edad", "factor_productor")
+```
+
+Consulte las guías “Inicio rápido” y “Comparabilidad ENA 2014–2025” en
+el sitio del paquete para el tratamiento metodológico.
+
+# Package index
+
+## Acceso y organización
+
+- [`ena_catalogo()`](https://paulesantos.github.io/enaPeruR/reference/ena_catalogo.md)
+  : Consultar la cobertura historica de ENA
+- [`ena_marco()`](https://paulesantos.github.io/enaPeruR/reference/ena_marco.md)
+  : Consultar el marco muestral de un anio ENA
+- [`ena_descargar()`](https://paulesantos.github.io/enaPeruR/reference/ena_descargar.md)
+  : Descargar un archivo ENA desde una URL autorizada
+- [`ena_archivos()`](https://paulesantos.github.io/enaPeruR/reference/ena_archivos.md)
+  : Encontrar archivos de datos ENA
+- [`ena_importar()`](https://paulesantos.github.io/enaPeruR/reference/ena_importar.md)
+  : Importar un archivo ENA
+- [`ena_leer()`](https://paulesantos.github.io/enaPeruR/reference/ena_leer.md)
+  : Leer una descarga ENA
+- [`ena_combinar()`](https://paulesantos.github.io/enaPeruR/reference/ena_combinar.md)
+  : Combinar bases ENA de manera segura
+
+## Calidad y estimación
+
+- [`ena_cusco_2024`](https://paulesantos.github.io/enaPeruR/reference/ena_cusco_2024.md)
+  : Ejemplo ENA 2024: productores de Cusco
+- [`ena_validar()`](https://paulesantos.github.io/enaPeruR/reference/ena_validar.md)
+  : Validar una base ENA antes del analisis
+- [`ena_diseno()`](https://paulesantos.github.io/enaPeruR/reference/ena_diseno.md)
+  : Construir especificacion de diseno muestral ENA
+- [`ena_estimar_media()`](https://paulesantos.github.io/enaPeruR/reference/ena_estimar_media.md)
+  : Estimar una media ponderada
+- [`ena_estimar_proporcion()`](https://paulesantos.github.io/enaPeruR/reference/ena_estimar_proporcion.md)
+  : Estimar proporciones ponderadas
+
+# Articles
+
+### Guías
+
+- [Inicio rápido con
+  enaPeruR](https://paulesantos.github.io/enaPeruR/articles/inicio-rapido.md):
+- [Comparabilidad ENA
+  2014--2025](https://paulesantos.github.io/enaPeruR/articles/comparabilidad.md):

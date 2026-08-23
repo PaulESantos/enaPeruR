@@ -4,107 +4,139 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tools for Peru's National Agricultural Survey Microdata • enaPeruR</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Tools for Peru's National Agricultural Survey Microdata">
-<meta property="og:description" content="Descarga, importa, organiza, valida y tabula microdatos de la Encuesta Nacional Agropecuaria (ENA) del Peru. Incluye un catalogo de cobertura 2014-2025, controles para la ruptura metodologica de 2023 y estimadores ponderados reproducibles. Las descargas se realizan desde URLs explicitamente provistas o desde el portal de Microdatos del INEI.">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>enaPeruR | Microdatos de la Encuesta Nacional Agropecuaria • enaPeruR</title>
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_3-0.4.10/font.css" rel="stylesheet">
+<link href="deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
+<link href="deps/Montserrat-0.4.10/font.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="enaPeruR | Microdatos de la Encuesta Nacional Agropecuaria">
+<meta name="description" content="Herramientas reproducibles para descargar, validar y analizar los microdatos de la Encuesta Nacional Agropecuaria (ENA) del Peru.
+">
+<meta property="og:description" content="Herramientas reproducibles para descargar, validar y analizar los microdatos de la Encuesta Nacional Agropecuaria (ENA) del Peru.
+">
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">enaPeruR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
-      </span>
-    </div>
+    <nav class="navbar navbar-expand-lg fixed-top bg-#FCFCFA" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
+    <a class="navbar-brand me-2" href="index.html">enaPeruR</a>
 
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/comparabilidad.html">Comparabilidad ENA 2014--2025</a>
-    </li>
-    <li>
-      <a href="articles/inicio-rapido.html">Inicio rápido con enaPeruR</a>
-    </li>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.1</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="articles/inicio-rapido.html">Empezar</a></li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-gu-as" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Guías</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-gu-as">
+<li><a class="dropdown-item" href="articles/inicio-rapido.html">Inicio rápido</a></li>
+    <li><a class="dropdown-item" href="articles/comparabilidad.html">Comparabilidad 2014–2025</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="external-link dropdown-item" href="https://proyectos.inei.gob.pe/microdatos/">Portal de Microdatos INEI</a></li>
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="navbar-nav"></ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
-
-
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-<div class="section level1">
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="enaperur">enaPeruR<a class="anchor" aria-label="anchor" href="#enaperur"></a>
 </h1></div>
 <p>Herramientas reproducibles para los microdatos de la Encuesta Nacional Agropecuaria (ENA) del Perú, 2014–2025.</p>
-<blockquote>
-<p><strong>Comparabilidad:</strong> la ENA 2014–2022 se basa en el marco del IV CENAGRO 2012. Desde 2023 usa el Marco Maestro Muestral de MIDAGRI (marco de áreas y de lista). No compare ambos periodos sin una decisión metodológica explícita.</p>
-</blockquote>
 <div class="section level2">
-<h2 id="instalación-de-desarrollo">Instalación de desarrollo<a class="anchor" aria-label="anchor" href="#instalaci%C3%B3n-de-desarrollo"></a>
+<h2 id="alcance">Alcance<a class="anchor" aria-label="anchor" href="#alcance"></a>
 </h2>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># remotes::install_local("D:/enaR")</span></span></code></pre></div>
+<p><code>enaPeruR</code> organiza el acceso, lectura, validación, apilado y tabulación descriptiva de microdatos ENA. Permite preparar una base de varios años, pero no convierte una serie histórica en comparable automáticamente.</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr>
+<th>Función</th>
+<th>Lo que hace</th>
+<th>Lo que no hace</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+<code><a href="reference/ena_catalogo.html">ena_catalogo()</a></code> y <code><a href="reference/ena_marco.html">ena_marco()</a></code>
+</td>
+<td>Informan la cobertura y el marco de cada año.</td>
+<td>No verifican que los indicadores sean comparables.</td>
+</tr>
+<tr>
+<td>
+<code><a href="reference/ena_descargar.html">ena_descargar()</a></code>, <code><a href="reference/ena_importar.html">ena_importar()</a></code> y <code><a href="reference/ena_leer.html">ena_leer()</a></code>
+</td>
+<td>Descargan y leen archivos autorizados.</td>
+<td>No localizan URLs ni homologan módulos.</td>
+</tr>
+<tr>
+<td><code><a href="reference/ena_combinar.html">ena_combinar()</a></code></td>
+<td>Apila bases con estructuras distintas y conserva el origen.</td>
+<td>No armoniza nombres, códigos, cuestionarios ni ponderadores.</td>
+</tr>
+<tr>
+<td><code><a href="reference/ena_validar.html">ena_validar()</a></code></td>
+<td>Revisa estructura y pesos.</td>
+<td>No sustituye la revisión metodológica.</td>
+</tr>
+<tr>
+<td>
+<code><a href="reference/ena_estimar_media.html">ena_estimar_media()</a></code> y <code><a href="reference/ena_estimar_proporcion.html">ena_estimar_proporcion()</a></code>
+</td>
+<td>Producen estimaciones ponderadas descriptivas.</td>
+<td>No calculan errores estándar, CV ni intervalos de confianza.</td>
+</tr>
+</tbody>
+</table>
+<p>La ENA 2014–2022 usa el marco derivado del IV CENAGRO 2012. Desde 2023 utiliza el Marco Maestro Muestral de MIDAGRI, con componentes de áreas y lista. Los años 2020 y 2021 no figuran como disponibles en el catálogo del paquete. Las comparaciones 2023–2025 con años anteriores requieren revisar población objetivo, módulos, periodos de referencia, codificación y factor de expansión.</p>
 </div>
 <div class="section level2">
-<h2 id="flujo-mínimo">Flujo mínimo<a class="anchor" aria-label="anchor" href="#flujo-m%C3%ADnimo"></a>
+<h2 id="flujo-para-una-serie-histórica">Flujo para una serie histórica<a class="anchor" aria-label="anchor" href="#flujo-para-una-serie-hist%C3%B3rica"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://proyectos.inei.gob.pe/microdatos/" class="external-link">enaPeruR</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/ena_catalogo.html">ena_catalogo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/ena_marco.html">ena_marco</a></span><span class="op">(</span><span class="fl">2022</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Una URL debe obtenerse del portal de Microdatos del INEI tras iniciar sesión.</span></span>
-<span><span class="co"># rutas &lt;- ena_descargar(url = "https://.../archivo.zip", destino = "datos")</span></span>
-<span><span class="co"># datos &lt;- ena_leer(rutas[1])</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/ena_validar.html">ena_validar</a></span><span class="op">(</span><span class="va">datos</span>, pesos <span class="op">=</span> <span class="st">"FACTOR"</span>, estratos <span class="op">=</span> <span class="st">"ESTRATO"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/ena_estimar_proporcion.html">ena_estimar_proporcion</a></span><span class="op">(</span><span class="va">datos</span>, variable <span class="op">=</span> <span class="st">"SEXO"</span>, pesos <span class="op">=</span> <span class="st">"FACTOR"</span><span class="op">)</span></span></code></pre></div>
-<p>La descarga no contiene ni redistribuye microdatos: respeta el acceso y el secreto estadístico del INEI. Consulte el portal oficial: <a href="https://proyectos.inei.gob.pe/microdatos/" class="external-link uri">https://proyectos.inei.gob.pe/microdatos/</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(enaPeruR)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co"># 1. Verificar cobertura y marco antes de elegir años comparables.</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">ena_catalogo</span>(<span class="dv">2014</span><span class="sc">:</span><span class="dv">2025</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">ena_marco</span>(<span class="dv">2023</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># 2. Descargar las URLs oficiales de un mismo módulo para cada año.</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># 3. Leer cada archivo, conservar el año y armonizar fuera de enaPeruR.</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>modulos <span class="ot">&lt;-</span> <span class="fu">ena_leer</span>(<span class="st">"datos/ena"</span>, <span class="at">combinar =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>modulos <span class="ot">&lt;-</span> <span class="fu">lapply</span>(modulos, (x) <span class="fu">transform</span>(x, <span class="at">anio_analisis =</span> x<span class="sc">$</span>ANIO))</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>serie <span class="ot">&lt;-</span> <span class="fu">ena_combinar</span>(modulos, <span class="at">id_origen =</span> <span class="st">"archivo_origen"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co"># 4. Tras documentar la armonización, validar y tabular.</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="fu">ena_validar</span>(serie, <span class="at">pesos =</span> <span class="st">"factor_armonizado"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">ena_estimar_media</span>(serie, <span class="st">"indicador_armonizado"</span>, <span class="st">"factor_armonizado"</span>, <span class="at">por =</span> <span class="st">"anio_analisis"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co"># Ejemplo incluido: subconjunto didáctico ENA 2024 de Cusco.</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="fu">data</span>(ena_cusco_2024)</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="fu">ena_estimar_media</span>(ena_cusco_2024, <span class="st">"edad"</span>, <span class="st">"factor_productor"</span>)</span></code></pre></div>
+<p>Consulte las guías “Inicio rápido” y “Comparabilidad ENA 2014–2025” en el sitio del paquete para el tratamiento metodológico.</p>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="https://proyectos.inei.gob.pe/microdatos/" class="external-link">Report a bug</a></li>
@@ -138,29 +170,26 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Equipo enaR <br><small class="roles"> Author, maintainer </small>   </li>
+<li>Paul Efren Santos Andrade <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-6635-0375" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
 
 
-  </div>
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Equipo enaR.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Paul Efren Santos Andrade.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
-
 
 
 
