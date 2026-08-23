@@ -10,7 +10,8 @@ ena_leer(ruta, combinar = FALSE, ...)
 \item{ruta}{Directorio o archivo. Si es un directorio, lee el unico archivo
 de datos encontrado o todos cuando \code{combinar} es verdadero.}
 
-\item{combinar}{Si es \code{TRUE}, apila los archivos detectados.}
+\item{combinar}{Si es \code{TRUE}, apila los archivos detectados sin armonizar
+variables, codigos ni factores de expansion.}
 
 \item{...}{Argumentos para \code{\link[=ena_importar]{ena_importar()}}.}
 }

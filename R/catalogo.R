@@ -1,12 +1,13 @@
 #' Consultar la cobertura historica de ENA
 #'
-#' Devuelve un catalogo mantenible de la cobertura conocida de la ENA. La
-#' disponibilidad efectiva de modulos y formatos debe confirmarse en el portal
-#' de Microdatos del INEI al momento de descargar.
+#' Informa la cobertura conocida de la ENA y el marco muestral correspondiente.
+#' Los anios 2020 y 2021 se marcan como no disponibles. El catalogo orienta la
+#' preparacion de una serie; no certifica que las variables o indicadores sean
+#' comparables entre anios.
 #'
 #' @param anios Anios a consultar. Por defecto, todos los disponibles.
-#' @return Un `data.frame` con anio, periodo, marco muestral y una nota de
-#'   comparabilidad.
+#' @return Un `data.frame` con anio, disponibilidad, marco y una indicacion de
+#'   comparabilidad con 2014--2022.
 #' @export
 ena_catalogo <- function(anios = 2014:2025) {
   anios <- as.integer(anios)
@@ -23,7 +24,10 @@ ena_catalogo <- function(anios = 2014:2025) {
   )
 }
 
-#' Identificar el marco muestral de un anio ENA
+#' Consultar el marco muestral de un anio ENA
+#'
+#' Use esta funcion antes de apilar anios. El resultado es una advertencia
+#' metodologica, no una transformacion ni una prueba de comparabilidad.
 #'
 #' @param anio Anio de referencia entre 2014 y 2025.
 #' @return Una lista con metadatos del marco, incluido un aviso de

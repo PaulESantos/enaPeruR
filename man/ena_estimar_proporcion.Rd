@@ -22,5 +22,6 @@ Un \code{data.frame} ordenado por dominio y categoria.
 }
 \description{
 Calcula frecuencias muestrales, poblacion expandida y proporciones
-ponderadas para una variable categorica.
+ponderadas para una variable categorica. Puede aplicarse a una base
+multianual ya armonizada; no calcula varianza de diseno ni inferencia.
 }

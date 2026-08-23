@@ -2,8 +2,8 @@ Package: enaPeruR
 Title: Tools for Peru's National Agricultural Survey Microdata
 Version: 0.0.1
 Authors@R:
-    person(given = "Equipo enaR", family = "", role = c("aut", "cre"),
-           email = "maintainer@example.com")
+       person("Paul Efren", "Santos Andrade", , "paulefrens@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-6635-0375"))
 Description: Descarga, importa, organiza, valida y tabula microdatos de la
     Encuesta Nacional Agropecuaria (ENA) del Peru. Incluye un catalogo de
     cobertura 2014-2025, controles para la ruptura metodologica de 2023 y
@@ -11,6 +11,7 @@ Description: Descarga, importa, organiza, valida y tabula microdatos de la
     URLs explicitamente provistas o desde el portal de Microdatos del INEI.
 License: MIT + file LICENSE
 Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.2.0)
 Imports:
@@ -25,6 +26,6 @@ Suggests:
     withr
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-URL: https://proyectos.inei.gob.pe/microdatos/
+URL: https://proyectos.inei.gob.pe/microdatos/, https://paulesantos.github.io/enaPeruR/
 BugReports: https://proyectos.inei.gob.pe/microdatos/
 Config/roxygen2/version: 8.0.0

@@ -19,8 +19,9 @@ ena_diseno(datos, pesos, estratos = NULL, conglomerados = NULL)
 Un objeto de clase \code{ena_diseno}.
 }
 \description{
-Esta funcion verifica y estandariza los nombres necesarios para analisis
-ponderados. No estima varianzas complejas: para inferencia con errores
-estandar se deben verificar las variables de diseno del anio y usar un
-paquete especializado conforme a la ficha tecnica correspondiente.
+Esta funcion reune la base y los nombres de sus variables de diseno para las
+funciones descriptivas de \code{enaPeruR}. No construye un objeto de muestreo ni
+estima varianzas complejas. Para inferencia, errores estandar, CV o intervalos
+de confianza, verifique el diseno de cada anio y use una herramienta de
+encuestas complejas conforme a su ficha tecnica.
 }

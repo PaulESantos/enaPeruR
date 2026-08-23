@@ -1,6 +1,9 @@
 #' Combinar bases ENA de manera segura
 #'
 #' Agrega una columna de origen antes de apilar tablas con columnas distintas.
+#' Es util para preparar varios modulos o anios, pero no armoniza cuestionarios,
+#' nombres de variables, categorias o ponderadores. Realice y documente esa
+#' armonizacion antes de estimar una serie historica.
 #'
 #' @param datos Lista de `data.frame` o varios `data.frame`.
 #' @param id_origen Nombre de la columna que identifica la fuente.
@@ -54,10 +57,11 @@ ena_validar <- function(datos, pesos = NULL, estratos = NULL, conglomerados = NU
 
 #' Construir especificacion de diseno muestral ENA
 #'
-#' Esta funcion verifica y estandariza los nombres necesarios para analisis
-#' ponderados. No estima varianzas complejas: para inferencia con errores
-#' estandar se deben verificar las variables de diseno del anio y usar un
-#' paquete especializado conforme a la ficha tecnica correspondiente.
+#' Esta funcion reune la base y los nombres de sus variables de diseno para las
+#' funciones descriptivas de `enaPeruR`. No construye un objeto de muestreo ni
+#' estima varianzas complejas. Para inferencia, errores estandar, CV o intervalos
+#' de confianza, verifique el diseno de cada anio y use una herramienta de
+#' encuestas complejas conforme a su ficha tecnica.
 #'
 #' @param datos Base ENA.
 #' @param pesos Variable de ponderacion.
@@ -82,9 +86,9 @@ ena_diseno <- function(datos, pesos, estratos = NULL, conglomerados = NULL) {
 
 #' Estimar una media ponderada
 #'
-#' Calcula la media descriptiva ponderada, opcionalmente por dominios. El
-#' resultado no incluye error estandar porque este depende del diseno muestral
-#' especifico de cada anio ENA.
+#' Calcula la media descriptiva ponderada, opcionalmente por dominios. Puede
+#' aplicarse a una base multianual ya armonizada. No calcula error estandar,
+#' coeficiente de variacion ni intervalos de confianza.
 #'
 #' @param datos Un `data.frame` o un objeto de [ena_diseno()].
 #' @param variable Variable numerica.
@@ -106,7 +110,8 @@ ena_estimar_media <- function(datos, variable, pesos, por = NULL) {
 #' Estimar proporciones ponderadas
 #'
 #' Calcula frecuencias muestrales, poblacion expandida y proporciones
-#' ponderadas para una variable categorica.
+#' ponderadas para una variable categorica. Puede aplicarse a una base
+#' multianual ya armonizada; no calcula varianza de diseno ni inferencia.
 #'
 #' @inheritParams ena_estimar_media
 #' @param porcentaje Si es `TRUE`, expresa la proporcion en porcentaje.

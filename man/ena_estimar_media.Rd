@@ -19,7 +19,7 @@ ena_estimar_media(datos, variable, pesos, por = NULL)
 Un \code{data.frame} con tamano muestral, suma de pesos y media.
 }
 \description{
-Calcula la media descriptiva ponderada, opcionalmente por dominios. El
-resultado no incluye error estandar porque este depende del diseno muestral
-especifico de cada anio ENA.
+Calcula la media descriptiva ponderada, opcionalmente por dominios. Puede
+aplicarse a una base multianual ya armonizada. No calcula error estandar,
+coeficiente de variacion ni intervalos de confianza.
 }

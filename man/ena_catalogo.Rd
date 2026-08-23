@@ -10,11 +10,12 @@ ena_catalogo(anios = 2014:2025)
 \item{anios}{Anios a consultar. Por defecto, todos los disponibles.}
 }
 \value{
-Un \code{data.frame} con anio, periodo, marco muestral y una nota de
-comparabilidad.
+Un \code{data.frame} con anio, disponibilidad, marco y una indicacion de
+comparabilidad con 2014--2022.
 }
 \description{
-Devuelve un catalogo mantenible de la cobertura conocida de la ENA. La
-disponibilidad efectiva de modulos y formatos debe confirmarse en el portal
-de Microdatos del INEI al momento de descargar.
+Informa la cobertura conocida de la ENA y el marco muestral correspondiente.
+Los anios 2020 y 2021 se marcan como no disponibles. El catalogo orienta la
+preparacion de una serie; no certifica que las variables o indicadores sean
+comparables entre anios.
 }

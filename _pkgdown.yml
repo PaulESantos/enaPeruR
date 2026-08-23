@@ -1,0 +1,79 @@
+url: https://paulesantos.github.io/enaPeruR/
+
+home:
+  title: enaPeruR | Microdatos de la Encuesta Nacional Agropecuaria
+  description: >
+    Herramientas reproducibles para descargar, validar y analizar los
+    microdatos de la Encuesta Nacional Agropecuaria (ENA) del Peru.
+
+template:
+  bootstrap: 5
+  bslib:
+    base_font:
+      google: "Source Sans 3"
+    heading_font:
+      google: "Montserrat"
+    code_font:
+      google: "JetBrains Mono"
+    font_scale: 1
+    bg: "#FCFCFA"
+    fg: "#233252"
+    primary: "#4A689F"
+    secondary: "#85B64A"
+    success: "#609536"
+    info: "#78ADD2"
+    warning: "#F0B85B"
+    navbar-bg: "#FCFCFA"
+    navbar-light-color: "#233252"
+    navbar-light-hover-color: "#6B3A91"
+    link-color: "#3E5E9D"
+    headings-color: "#3E5E9D"
+
+navbar:
+  type: light
+  bg: "#FCFCFA"
+  structure:
+    left: [home, intro, reference, articles]
+    right: [github]
+  components:
+    intro:
+      text: "Empezar"
+      href: articles/inicio-rapido.html
+    articles:
+      text: "Guías"
+      menu:
+        - text: "Inicio rápido"
+          href: articles/inicio-rapido.html
+        - text: "Comparabilidad 2014–2025"
+          href: articles/comparabilidad.html
+        - text: "---------"
+        - text: "Portal de Microdatos INEI"
+          href: https://proyectos.inei.gob.pe/microdatos/
+
+reference:
+  - title: "Acceso y organización"
+    contents:
+      - ena_catalogo
+      - ena_marco
+      - ena_descargar
+      - ena_archivos
+      - ena_importar
+      - ena_leer
+      - ena_combinar
+  - title: "Calidad y estimación"
+    contents:
+      - ena_cusco_2024
+      - ena_validar
+      - ena_diseno
+      - ena_estimar_media
+      - ena_estimar_proporcion
+
+articles:
+  - title: "Guías"
+    navbar: "Guías"
+    contents:
+      - inicio-rapido
+      - comparabilidad
+
+development:
+  mode: auto

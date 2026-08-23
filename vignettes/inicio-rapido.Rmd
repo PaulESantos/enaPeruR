@@ -13,9 +13,9 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
 `enaPeruR` facilita la organización y tabulación reproducible de microdatos de la Encuesta Nacional Agropecuaria (ENA).
 
-## Comparabilidad histórica
+## Qué hace el paquete
 
-El catálogo separa la serie 2014--2022, basada en el marco del IV CENAGRO 2012, de 2023--2025, basada en el Marco Maestro Muestral de MIDAGRI. Antes de apilar años, revise el marco y los cuestionarios de cada periodo.
+El paquete descarga y lee archivos ENA, los apila, valida pesos y produce tablas ponderadas descriptivas. El apilado conserva las columnas disponibles y el origen de cada archivo; no armoniza cuestionarios, códigos, factores de expansión ni cambios de cobertura. Consulte la guía de comparabilidad antes de combinar años.
 
 ```{r}
 library(enaPeruR)
@@ -23,7 +23,7 @@ ena_catalogo(2022:2025)
 ena_marco(2023)
 ```
 
-## Descarga e importación
+## Descargar, leer y preparar
 
 El portal del INEI puede requerir registro. Copie la URL del archivo autorizado desde el portal oficial y pásela a `ena_descargar()`. No guarde credenciales en scripts ni paquetes.
 
@@ -32,16 +32,28 @@ ruta <- ena_descargar("https://proyectos.inei.gob.pe/.../ENA_2025.zip", "datos")
 datos <- ena_leer(ruta, combinar = TRUE)
 ```
 
-## Validación y tabulación
+## Datos incluidos y tabulación
 
-```{r}
-ejemplo <- data.frame(
-  dominio = c("Costa", "Costa", "Sierra"),
-  sexo = c("Mujer", "Hombre", "Mujer"),
-  edad = c(43, 51, 38),
-  factor = c(120, 100, 180)
-)
-ena_validar(ejemplo, pesos = "factor")
-ena_estimar_media(ejemplo, "edad", "factor", por = "dominio")
-ena_estimar_proporcion(ejemplo, "sexo", "factor", porcentaje = TRUE)
+El paquete trae una muestra real, fija y anonimizada de 250 productores de
+Cusco. Se usa exclusivamente para mostrar la interfaz: no es una muestra
+diseñada para estimar indicadores oficiales.
+
+```{r datos-reales}
+data("ena_cusco_2024", package = "enaPeruR", envir = environment())
+if (!exists("ena_cusco_2024")) {
+  candidatos <- c(
+    file.path("data", "ena_cusco_2024.rda"),
+    file.path("..", "data", "ena_cusco_2024.rda")
+  )
+  archivo_datos <- candidatos[file.exists(candidatos)][1L]
+  if (is.na(archivo_datos)) stop("No se encontró data/ena_cusco_2024.rda.")
+  load(archivo_datos, envir = environment())
+}
+
+ena_validar(ena_cusco_2024, pesos = "factor_productor")
+ena_estimar_media(ena_cusco_2024, "edad", "factor_productor")
+ena_estimar_proporcion(ena_cusco_2024, "P1103", "factor_productor", porcentaje = TRUE)
 ```
+
+`P1103` conserva el código original del cuestionario. Consulte el diccionario
+del módulo antes de asignar una interpretación sustantiva a sus categorías.

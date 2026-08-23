@@ -16,5 +16,5 @@ Un \code{data.frame}.
 }
 \description{
 Lee SPSS, Stata, CSV o RDS y conserva etiquetas de \code{haven} cuando el formato
-las provee.
+las provee. No recodifica ni estandariza nombres de variables entre anios.
 }

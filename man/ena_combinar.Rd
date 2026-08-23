@@ -16,4 +16,7 @@ Un \code{data.frame} combinado.
 }
 \description{
 Agrega una columna de origen antes de apilar tablas con columnas distintas.
+Es util para preparar varios modulos o anios, pero no armoniza cuestionarios,
+nombres de variables, categorias o ponderadores. Realice y documente esa
+armonizacion antes de estimar una serie historica.
 }

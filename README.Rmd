@@ -8,10 +8,42 @@ output: github_document
 
 Herramientas reproducibles para los microdatos de la Encuesta Nacional Agropecuaria (ENA) del Perú, 2014--2025.
 
-> **Comparabilidad:** la ENA 2014--2022 se basa en el marco del IV CENAGRO 2012. Desde 2023 usa el Marco Maestro Muestral de MIDAGRI. No compare ambos periodos sin una decisión metodológica explícita.
+## Alcance
+
+`enaPeruR` organiza el acceso, lectura, validación, apilado y tabulación descriptiva de microdatos ENA. Permite preparar una base de varios años, pero no convierte una serie histórica en comparable automáticamente.
+
+| Función | Lo que hace | Lo que no hace |
+|---|---|---|
+| `ena_catalogo()` y `ena_marco()` | Informan la cobertura y el marco de cada año. | No verifican que los indicadores sean comparables. |
+| `ena_descargar()`, `ena_importar()` y `ena_leer()` | Descargan y leen archivos autorizados. | No localizan URLs ni homologan módulos. |
+| `ena_combinar()` | Apila bases con estructuras distintas y conserva el origen. | No armoniza nombres, códigos, cuestionarios ni ponderadores. |
+| `ena_validar()` | Revisa estructura y pesos. | No sustituye la revisión metodológica. |
+| `ena_estimar_media()` y `ena_estimar_proporcion()` | Producen estimaciones ponderadas descriptivas. | No calculan errores estándar, CV ni intervalos de confianza. |
+
+La ENA 2014--2022 usa el marco derivado del IV CENAGRO 2012. Desde 2023 utiliza el Marco Maestro Muestral de MIDAGRI, con componentes de áreas y lista. Los años 2020 y 2021 no figuran como disponibles en el catálogo del paquete. Las comparaciones 2023--2025 con años anteriores requieren revisar población objetivo, módulos, periodos de referencia, codificación y factor de expansión.
+
+## Flujo para una serie histórica
 
 ```{r eval=FALSE}
 library(enaPeruR)
-ena_catalogo()
-ena_marco(2022)
+
+# 1. Verificar cobertura y marco antes de elegir años comparables.
+ena_catalogo(2014:2025)
+ena_marco(2023)
+
+# 2. Descargar las URLs oficiales de un mismo módulo para cada año.
+# 3. Leer cada archivo, conservar el año y armonizar fuera de enaPeruR.
+modulos <- ena_leer("datos/ena", combinar = FALSE)
+modulos <- lapply(modulos, (x) transform(x, anio_analisis = x$ANIO))
+serie <- ena_combinar(modulos, id_origen = "archivo_origen")
+
+# 4. Tras documentar la armonización, validar y tabular.
+ena_validar(serie, pesos = "factor_armonizado")
+ena_estimar_media(serie, "indicador_armonizado", "factor_armonizado", por = "anio_analisis")
+
+# Ejemplo incluido: subconjunto didáctico ENA 2024 de Cusco.
+data(ena_cusco_2024)
+ena_estimar_media(ena_cusco_2024, "edad", "factor_productor")
 ```
+
+Consulte las guías “Inicio rápido” y “Comparabilidad ENA 2014--2025” en el sitio del paquete para el tratamiento metodológico.

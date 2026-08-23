@@ -2,7 +2,7 @@
 % Please edit documentation in R/catalogo.R
 \name{ena_marco}
 \alias{ena_marco}
-\title{Identificar el marco muestral de un anio ENA}
+\title{Consultar el marco muestral de un anio ENA}
 \usage{
 ena_marco(anio)
 }
@@ -14,5 +14,6 @@ Una lista con metadatos del marco, incluido un aviso de
 comparabilidad cuando corresponde.
 }
 \description{
-Identificar el marco muestral de un anio ENA
+Use esta funcion antes de apilar anios. El resultado es una advertencia
+metodologica, no una transformacion ni una prueba de comparabilidad.
 }

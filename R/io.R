@@ -45,7 +45,7 @@ ena_archivos <- function(ruta, recursivo = TRUE) {
 #' Importar un archivo ENA
 #'
 #' Lee SPSS, Stata, CSV o RDS y conserva etiquetas de `haven` cuando el formato
-#' las provee.
+#' las provee. No recodifica ni estandariza nombres de variables entre anios.
 #'
 #' @param archivo Ruta a un archivo `.sav`, `.dta`, `.csv` o `.rds`.
 #' @param columnas Nombres opcionales de columnas a conservar tras la lectura.
@@ -71,7 +71,8 @@ ena_importar <- function(archivo, columnas = NULL) {
 #'
 #' @param ruta Directorio o archivo. Si es un directorio, lee el unico archivo
 #'   de datos encontrado o todos cuando `combinar` es verdadero.
-#' @param combinar Si es `TRUE`, apila los archivos detectados.
+#' @param combinar Si es `TRUE`, apila los archivos detectados sin armonizar
+#'   variables, codigos ni factores de expansion.
 #' @param ... Argumentos para [ena_importar()].
 #' @return Un `data.frame` o una lista de ellos.
 #' @export
