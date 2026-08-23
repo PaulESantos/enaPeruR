@@ -4,3 +4,4 @@
 ^codecov\.yml$
 ^enaR\.Rproj$
 ^\.Rproj\.user$
+^LICENSE\.md$
