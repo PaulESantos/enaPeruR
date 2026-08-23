@@ -1,0 +1,17 @@
+---
+output: github_document
+---
+
+<!-- README.md se genera desde este archivo. -->
+
+# enaPeruR
+
+Herramientas reproducibles para los microdatos de la Encuesta Nacional Agropecuaria (ENA) del Perú, 2014--2025.
+
+> **Comparabilidad:** la ENA 2014--2022 se basa en el marco del IV CENAGRO 2012. Desde 2023 usa el Marco Maestro Muestral de MIDAGRI. No compare ambos periodos sin una decisión metodológica explícita.
+
+```{r eval=FALSE}
+library(enaPeruR)
+ena_catalogo()
+ena_marco(2022)
+```

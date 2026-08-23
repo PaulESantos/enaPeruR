@@ -1,0 +1,47 @@
+---
+title: "Inicio rápido con enaPeruR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Inicio rápido con enaPeruR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+`enaPeruR` facilita la organización y tabulación reproducible de microdatos de la Encuesta Nacional Agropecuaria (ENA).
+
+## Comparabilidad histórica
+
+El catálogo separa la serie 2014--2022, basada en el marco del IV CENAGRO 2012, de 2023--2025, basada en el Marco Maestro Muestral de MIDAGRI. Antes de apilar años, revise el marco y los cuestionarios de cada periodo.
+
+```{r}
+library(enaPeruR)
+ena_catalogo(2022:2025)
+ena_marco(2023)
+```
+
+## Descarga e importación
+
+El portal del INEI puede requerir registro. Copie la URL del archivo autorizado desde el portal oficial y pásela a `ena_descargar()`. No guarde credenciales en scripts ni paquetes.
+
+```r
+ruta <- ena_descargar("https://proyectos.inei.gob.pe/.../ENA_2025.zip", "datos")
+datos <- ena_leer(ruta, combinar = TRUE)
+```
+
+## Validación y tabulación
+
+```{r}
+ejemplo <- data.frame(
+  dominio = c("Costa", "Costa", "Sierra"),
+  sexo = c("Mujer", "Hombre", "Mujer"),
+  edad = c(43, 51, 38),
+  factor = c(120, 100, 180)
+)
+ena_validar(ejemplo, pesos = "factor")
+ena_estimar_media(ejemplo, "edad", "factor", por = "dominio")
+ena_estimar_proporcion(ejemplo, "sexo", "factor", porcentaje = TRUE)
+```

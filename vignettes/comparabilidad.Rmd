@@ -1,0 +1,22 @@
+---
+title: "Comparabilidad ENA 2014--2025"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Comparabilidad ENA 2014--2025}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+La ENA no debe analizarse como una serie automáticamente homogénea. Entre 2014 y 2022 empleó el marco derivado del IV CENAGRO 2012. Desde 2023 emplea el Marco Maestro Muestral de MIDAGRI, que incorpora un marco de áreas para productores individuales y un marco de lista para empresas y grandes productores.
+
+Antes de comparar indicadores:
+
+1. Defina la población objetivo y el componente (áreas/lista) de cada año.
+2. Compare cuestionarios, periodos de referencia y reglas de edición.
+3. Revise la ficha técnica y las variables de ponderación del año.
+4. Documente toda armonización y presente la ruptura de 2023 cuando sea relevante.
+
+```{r}
+library(enaPeruR)
+ena_catalogo()
+```
